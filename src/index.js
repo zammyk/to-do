@@ -2,16 +2,16 @@ import { todo } from "./todo_item";
 import { Project, isDeletableProject, getProjectFromId } from "./project";
 
 const todoApp = (() => {
-  let projects = [Project("Home", false)];
-  let currProjectId = projects[0].getId;
+  let projectIds = [Project("Home", false).getId()];
+  let currProjectId = 0;
   const addProject = (projectTitle) => {
-    projects.push(Project(projectTitle));
+    projectIds.push(Project(projectTitle).getId());
   };
   const deleteProject = (project_removed_id) => {
     if (!isDeletableProject[project_removed_id]) return;
     for (let i = 0; i < projects.length; i++) {
-      if (projects[i].getId === project_removed_id) {
-        projects.splice(i, 1);
+      if (projectIds[i] === project_removed_id) {
+        projectIds.splice(i, 1);
         return;
       }
     }
@@ -27,14 +27,5 @@ const todoApp = (() => {
     deleteProject,
     switchCurrProject,
     showCurrProject,
-    projects,
   };
 })();
-
-console.log(todoApp.projects);
-todoApp.addProject("hello");
-todoApp.addProject("bye");
-todoApp.switchCurrProject(1);
-todoApp.showCurrProject();
-todoApp.switchCurrProject(0);
-todoApp.showCurrProject();

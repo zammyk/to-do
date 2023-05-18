@@ -26,6 +26,12 @@ let Project = (title, deletable = true) => {
   const getId = () => {
     return id;
   };
+  const getTitle = () => {
+    return title;
+  };
+  const setTitle = (newTitle) => {
+    title = newTitle;
+  };
   const obj = {
     title,
     add_todo_item,
