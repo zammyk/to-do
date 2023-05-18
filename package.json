@@ -1,0 +1,26 @@
+{
+  "name": "to-do",
+  "version": "1.0.0",
+  "description": "A basic to-do list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zammyk/to-do.git"
+  },
+  "author": "zammyk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zammyk/to-do/issues"
+  },
+  "homepage": "https://github.com/zammyk/to-do#readme",
+  "devDependencies": {
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0"
+  }
+}
