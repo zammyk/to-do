@@ -9,7 +9,7 @@ const todoApp = (() => {
   };
   const deleteProject = (project_removed_id) => {
     if (!isDeletableProject[project_removed_id]) return;
-    for (let i = 0; i < projects.length; i++) {
+    for (let i = 0; i < projectIds.length; i++) {
       if (projectIds[i] === project_removed_id) {
         projectIds.splice(i, 1);
         return;
