@@ -24,3 +24,11 @@ export function createImage(src, alt) {
   img.alt = alt;
   return img;
 }
+
+export function deleteAllChildren(node) {
+  while (node.firstChild != null) node.removeChild(node.firstChild);
+}
+
+export function deleteAllChildrenExceptLast(node) {
+  while (node.children.length > 1) node.removeChild(node.firstChild);
+}

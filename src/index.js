@@ -1,7 +1,16 @@
 import { Todo } from "./todo_item";
 import { Project, isDeletableProject, getProjectFromId } from "./project";
-import { createElement } from "./DomStuff";
+import { createElement, deleteAllChildrenExceptLast } from "./DomStuff";
 import "./assets/srcStyle.css";
+
+function createProjectDOM(project) {
+  let projectDom = createElement("div", ["project"], project.getTitle());
+  projectDom.id = "project-" + project.getId();
+  projectDom.addEventListener("click", () => {
+    todoApp.switchCurrProject(projectDom.id.substring(8));
+  });
+  return projectDom;
+}
 
 const todoApp = (() => {
   // project handlers
@@ -11,8 +20,7 @@ const todoApp = (() => {
     Project("Home", false).getId(),
   ];
   let currProjectId = 0;
-  const addProject = (projectTitle) => {
-    let project = Project(projectTitle);
+  const addProject = (project) => {
     projectIds.push(project.getId());
     switchCurrProject(project.getId());
   };
@@ -34,8 +42,15 @@ const todoApp = (() => {
   };
   const switchCurrProject = (projectId) => {
     currProjectId = projectId;
+    deleteAllChildrenExceptLast(todoContainer);
     // add eventlistener to update todo area, whenever switchCurrProject is triggered
     // changed the dom of todoItems
+    let project = getCurrProject();
+    let todoItems = project.getAllTodoItems();
+    todoItems.forEach((todoItem) => {
+      let todoDom = createElement("div", ["todo-item"], todoItem.title);
+      todoContainer.insertBefore(todoDom, btnAddTodoItem);
+    });
   };
   const getCurrProject = () => {
     return getProjectFromId(currProjectId);
@@ -63,7 +78,7 @@ const btnAddTodoItem = document.getElementById("addTodoItem");
 
 window.onload = () => {
   todoApp.getAllProjects().forEach((project) => {
-    let projectDom = createElement("div", ["project"], project.getTitle());
+    let projectDom = createProjectDOM(project);
     projectContainer.insertBefore(projectDom, projectContainer.childNodes[0]);
   });
 
@@ -72,8 +87,9 @@ window.onload = () => {
 
 btnAddProject.addEventListener("click", () => {
   let projectTitle = prompt("Enter ProjectTitle");
-  todoApp.addProject(projectTitle);
-  let projectDom = createElement("div", ["project"], projectTitle);
+  let project = Project("projectTitle");
+  todoApp.addProject(project);
+  let projectDom = createProjectDOM(project);
   projectContainer.insertBefore(projectDom, btnAddProject);
 });
 
