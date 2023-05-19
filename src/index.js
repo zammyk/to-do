@@ -20,14 +20,29 @@ const todoApp = (() => {
   const switchCurrProject = (projectId) => {
     currProjectId = projectId;
   };
-  const showCurrProject = () => {
-    console.log(getProjectFromId(currProjectId));
+  const getCurrProject = () => {
+    return getProjectFromId(currProjectId);
+  };
+  const getAllProjects = () => {
+    let projects = [];
+    projectIds.forEach((id) => projects.push(getProjectFromId(id)));
+    return projects;
   };
 
   return {
     addProject,
     deleteProject,
     switchCurrProject,
-    showCurrProject,
+    getCurrProject,
+    getAllProjects,
   };
 })();
+
+const addProject = document.getElementById("addProject");
+const showProjects = document.getElementById("showProjects");
+addProject.addEventListener("click", () => {
+  todoApp.addProject(prompt("Enter Project Name"));
+});
+showProjects.addEventListener("click", () => {
+  todoApp.getAllProjects().forEach((project) => console.log(project));
+});
