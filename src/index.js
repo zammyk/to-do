@@ -8,17 +8,17 @@ const todoApp = (() => {
   const addProject = (projectTitle) => {
     projectIds.push(Project(projectTitle).getId());
   };
-  const deleteProject = (project_removed_id) => {
-    if (!isDeletableProject[project_removed_id]) return;
+  const deleteProject = (projectRemovedId) => {
+    if (!isDeletableProject[projectRemovedId]) return;
     for (let i = 0; i < projectIds.length; i++) {
-      if (projectIds[i] === project_removed_id) {
+      if (projectIds[i] === projectRemovedId) {
         projectIds.splice(i, 1);
         return;
       }
     }
   };
-  const switchCurrProject = (project_id) => {
-    currProjectId = project_id;
+  const switchCurrProject = (projectId) => {
+    currProjectId = projectId;
   };
   const showCurrProject = () => {
     console.log(getProjectFromId(currProjectId));
