@@ -1,4 +1,4 @@
-import { Todo } from "./todo_item";
+import { Todo, getTodoFromId } from "./todo_item";
 
 let nextId = 0;
 let projectDirectory = [];
@@ -20,11 +20,15 @@ let Project = (title, deletable = true) => {
       }
     }
   };
-  const getItemCount = () => {
-    return todo_items_id.length;
+  const getTodoItem = (todoItemId) => {
+    return getTodoFromId(todoItemId);
   };
   const isDeletable = () => {
     return _deletable;
+  };
+
+  const getItemCount = () => {
+    return todo_items_id.length;
   };
   const getId = () => {
     return id;
@@ -32,6 +36,7 @@ let Project = (title, deletable = true) => {
   const getTitle = () => {
     return title;
   };
+
   const setTitle = (newTitle) => {
     title = newTitle;
   };
@@ -44,6 +49,7 @@ let Project = (title, deletable = true) => {
     getId,
     getTitle,
     setTitle,
+    getTodoItem,
   };
   projectDirectory.push(obj);
   return obj;

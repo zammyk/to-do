@@ -50,4 +50,9 @@ class Todo {
   }
 }
 
-export { Todo };
+function getTodoFromId(todoId) {
+  if (todoId >= todoDirectory.length) return undefined;
+  return todoDirectory[todoId];
+}
+
+export { Todo, getTodoFromId };
