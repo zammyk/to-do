@@ -2,23 +2,23 @@ let nextId = 0;
 let projectDirectory = [];
 
 let Project = (title, deletable = true) => {
-  let todo_items = [];
+  let todo_items_id = [];
   let id = nextId++;
   let _deletable = deletable;
 
   const add_todo_item = (todo_item) => {
-    todo_items.push(todo_item);
+    todo_items_id.push(todo_item.id);
   };
-  const remove_todo_item = (todo_item) => {
-    for (let i = 0; i < todo_items.length; i++) {
-      if (todo_items[i] === todo_item) {
-        todo_items.splice(i, 1);
+  const remove_todo_item = (todo_item_id) => {
+    for (let i = 0; i < todo_items_id.length; i++) {
+      if (todo_items_id[i] === todo_item_id) {
+        todo_items_id.splice(i, 1);
         return;
       }
     }
   };
   const getItemCount = () => {
-    return todo_items.length;
+    return todo_items_id.length;
   };
   const isDeletable = () => {
     return _deletable;

@@ -1,3 +1,5 @@
+let nextId = 0;
+
 class todo {
   constructor(title, description, dueDate, priority) {
     this.title = title;
@@ -5,6 +7,7 @@ class todo {
     this.dueDate = dueDate;
     this.priority = priority;
     this.completed = false;
+    this.id = nextId++;
   }
 
   get getTitle() {
@@ -21,6 +24,9 @@ class todo {
   }
   get getCompleted() {
     return this.completed;
+  }
+  get getId() {
+    return this.id;
   }
 
   set setTitle(newTitle) {
