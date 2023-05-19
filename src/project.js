@@ -4,18 +4,18 @@ let nextId = 0;
 let projectDirectory = [];
 
 let Project = (title, deletable = true) => {
-  let todo_items_id = [];
+  let todoItemsId = [];
   let id = nextId++;
   let _deletable = deletable;
 
-  const add_todo_item = (title, description, dueDate, priority) => {
-    const todo_item = new Todo(title, description, dueDate, priority);
-    todo_items_id.push(todo_item.id);
+  const addTodoItem = (title, description, dueDate, priority) => {
+    const todoItem = new Todo(title, description, dueDate, priority);
+    todoItemsId.push(todoItem.id);
   };
-  const remove_todo_item = (todo_item_id) => {
-    for (let i = 0; i < todo_items_id.length; i++) {
-      if (todo_items_id[i] === todo_item_id) {
-        todo_items_id.splice(i, 1);
+  const removeTodoItem = (todoItemId) => {
+    for (let i = 0; i < todoItemsId.length; i++) {
+      if (todoItemsId[i] === todoItemId) {
+        todoItemsId.splice(i, 1);
         return;
       }
     }
@@ -28,7 +28,7 @@ let Project = (title, deletable = true) => {
   };
 
   const getItemCount = () => {
-    return todo_items_id.length;
+    return todoItemsId.length;
   };
   const getId = () => {
     return id;
@@ -42,8 +42,8 @@ let Project = (title, deletable = true) => {
   };
   const obj = {
     title,
-    add_todo_item,
-    remove_todo_item,
+    addTodoItem,
+    removeTodoItem,
     getItemCount,
     isDeletable,
     getId,
@@ -64,9 +64,9 @@ function isDeletableProject(projectId) {
   return true;
 }
 
-function getProjectFromId(project_id) {
-  if (project_id >= projectDirectory.length) return undefined;
-  return projectDirectory[project_id];
+function getProjectFromId(projectId) {
+  if (projectId >= projectDirectory.length) return undefined;
+  return projectDirectory[projectId];
 }
 
 export { Project, isDeletableProject, getProjectFromId };
