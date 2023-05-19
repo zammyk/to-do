@@ -42,4 +42,12 @@ footer {
 
 .project-column {
   background-color: rgb(167, 167, 167);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.project-barrier {
+  font-size: 2rem;
 }

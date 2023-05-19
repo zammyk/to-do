@@ -1,0 +1,8 @@
+.project {
+  font-size: 1.5rem;
+}
+
+.project:hover {
+  color: red;
+  cursor: pointer;
+}
