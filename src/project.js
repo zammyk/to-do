@@ -1,3 +1,5 @@
+import { Todo } from "./todo_item";
+
 let nextId = 0;
 let projectDirectory = [];
 
@@ -6,7 +8,8 @@ let Project = (title, deletable = true) => {
   let id = nextId++;
   let _deletable = deletable;
 
-  const add_todo_item = (todo_item) => {
+  const add_todo_item = (title, description, dueDate, priority) => {
+    const todo_item = new Todo(title, description, dueDate, priority);
     todo_items_id.push(todo_item.id);
   };
   const remove_todo_item = (todo_item_id) => {

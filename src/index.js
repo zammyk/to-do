@@ -1,4 +1,4 @@
-import { todo } from "./todo_item";
+import { Todo } from "./todo_item";
 import { Project, isDeletableProject, getProjectFromId } from "./project";
 
 const todoApp = (() => {

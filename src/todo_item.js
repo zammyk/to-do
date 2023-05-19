@@ -1,6 +1,7 @@
 let nextId = 0;
+let todoDirectory = [];
 
-class todo {
+class Todo {
   constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;
@@ -8,6 +9,7 @@ class todo {
     this.priority = priority;
     this.completed = false;
     this.id = nextId++;
+    todoDirectory.push(this);
   }
 
   get getTitle() {
@@ -48,4 +50,4 @@ class todo {
   }
 }
 
-export { todo };
+export { Todo };
