@@ -40,12 +40,21 @@ footer {
   grid-template-rows: 1fr;
 }
 
+.todo-column,
 .project-column {
-  background-color: rgb(167, 167, 167);
   display: flex;
   flex-direction: column;
+}
+
+.project-column {
+  background-color: rgb(167, 167, 167);
   padding: 1rem;
   gap: 0.5rem;
+}
+
+.todo-column {
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .project-barrier {

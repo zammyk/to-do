@@ -8,8 +8,7 @@ let Project = (title, deletable = true) => {
   let id = nextId++;
   let _deletable = deletable;
 
-  const addTodoItem = (title, description, dueDate, priority) => {
-    const todoItem = new Todo(title, description, dueDate, priority);
+  const addTodoItem = (todoItem) => {
     todoItemsId.push(todoItem.id);
   };
   const removeTodoItem = (todoItemId) => {

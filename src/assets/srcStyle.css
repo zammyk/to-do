@@ -6,3 +6,7 @@
   color: red;
   cursor: pointer;
 }
+
+.todo-item {
+  background-color: rgb(194, 194, 194);
+}
