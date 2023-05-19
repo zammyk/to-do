@@ -39,6 +39,8 @@ let Project = (title, deletable = true) => {
     getItemCount,
     isDeletable,
     getId,
+    getTitle,
+    setTitle,
   };
   projectDirectory.push(obj);
   return obj;

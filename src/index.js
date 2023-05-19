@@ -2,6 +2,7 @@ import { todo } from "./todo_item";
 import { Project, isDeletableProject, getProjectFromId } from "./project";
 
 const todoApp = (() => {
+  // project handlers
   let projectIds = [Project("Home", false).getId()];
   let currProjectId = 0;
   const addProject = (projectTitle) => {
@@ -22,6 +23,7 @@ const todoApp = (() => {
   const showCurrProject = () => {
     console.log(getProjectFromId(currProjectId));
   };
+
   return {
     addProject,
     deleteProject,
