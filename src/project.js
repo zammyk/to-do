@@ -36,6 +36,11 @@ let Project = (title, deletable = true) => {
   const getTitle = () => {
     return title;
   };
+  const getAllTodoItems = () => {
+    let todoItems = [];
+    todoItemsId.forEach((id) => todoItems.push(getTodoFromId(id)));
+    return todoItems;
+  };
 
   const setTitle = (newTitle) => {
     title = newTitle;
@@ -50,6 +55,7 @@ let Project = (title, deletable = true) => {
     getTitle,
     setTitle,
     getTodoItem,
+    getAllTodoItems,
   };
   projectDirectory.push(obj);
   return obj;
