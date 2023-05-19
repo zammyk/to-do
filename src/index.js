@@ -87,7 +87,7 @@ window.onload = () => {
 
 btnAddProject.addEventListener("click", () => {
   let projectTitle = prompt("Enter ProjectTitle");
-  let project = Project("projectTitle");
+  let project = Project(projectTitle);
   todoApp.addProject(project);
   let projectDom = createProjectDOM(project);
   projectContainer.insertBefore(projectDom, btnAddProject);
