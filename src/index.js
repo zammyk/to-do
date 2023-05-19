@@ -37,12 +37,3 @@ const todoApp = (() => {
     getAllProjects,
   };
 })();
-
-const addProject = document.getElementById("addProject");
-const showProjects = document.getElementById("showProjects");
-addProject.addEventListener("click", () => {
-  todoApp.addProject(prompt("Enter Project Name"));
-});
-showProjects.addEventListener("click", () => {
-  todoApp.getAllProjects().forEach((project) => console.log(project));
-});
