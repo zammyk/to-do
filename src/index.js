@@ -1,16 +1,11 @@
 import { Todo } from "./todo_item";
 import { Project, isDeletableProject, getProjectFromId } from "./project";
-import { createElement, deleteAllChildrenExceptLast } from "./DomStuff";
+import {
+  createElement,
+  deleteAllChildrenExceptLast,
+  createProjectDOM,
+} from "./DomStuff";
 import "./assets/srcStyle.css";
-
-function createProjectDOM(project) {
-  let projectDom = createElement("div", ["project"], project.getTitle());
-  projectDom.id = "project-" + project.getId();
-  projectDom.addEventListener("click", () => {
-    todoApp.switchCurrProject(projectDom.id.substring(8));
-  });
-  return projectDom;
-}
 
 const todoApp = (() => {
   // project handlers
@@ -80,7 +75,7 @@ const btnAddTodoItem = document.getElementById("addTodoItem");
 
 window.onload = () => {
   todoApp.getAllProjects().forEach((project) => {
-    let projectDom = createProjectDOM(project);
+    let projectDom = createProjectDOM(project, todoApp);
     projectContainer.insertBefore(projectDom, projectContainer.childNodes[0]);
   });
 
@@ -91,7 +86,7 @@ btnAddProject.addEventListener("click", () => {
   let projectTitle = prompt("Enter ProjectTitle");
   let project = Project(projectTitle);
   todoApp.addProject(project);
-  let projectDom = createProjectDOM(project);
+  let projectDom = createProjectDOM(project, todoApp);
   projectContainer.insertBefore(projectDom, btnAddProject);
 });
 

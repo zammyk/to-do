@@ -1,3 +1,4 @@
+import "./assets/srcStyle.css";
 export function createElement(type, classes, text = "", children = []) {
   const ele = document.createElement(type);
 
@@ -31,4 +32,13 @@ export function deleteAllChildren(node) {
 
 export function deleteAllChildrenExceptLast(node) {
   while (node.children.length > 1) node.removeChild(node.firstChild);
+}
+
+export function createProjectDOM(project, todoApp) {
+  let projectDom = createElement("div", ["project"], project.getTitle());
+  projectDom.id = "project-" + project.getId();
+  projectDom.addEventListener("click", () => {
+    todoApp.switchCurrProject(projectDom.id.substring(8));
+  });
+  return projectDom;
 }
