@@ -43,6 +43,8 @@ const todoApp = (() => {
   const switchCurrProject = (projectId) => {
     currProjectId = projectId;
     deleteAllChildrenExceptLast(todoContainer);
+    if (projectId < 2) btnAddTodoItem.style.display = "none";
+    else btnAddTodoItem.style.display = "";
     // add eventlistener to update todo area, whenever switchCurrProject is triggered
     // changed the dom of todoItems
     let project = getCurrProject();
