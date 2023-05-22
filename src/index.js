@@ -68,6 +68,7 @@ const todoApp = (() => {
   };
 })();
 
+const content = document.getElementById("content");
 const projectContainer = document.querySelector(".project-column");
 const todoContainer = document.querySelector(".todo-column");
 const btnAddProject = document.getElementById("addProject");
@@ -91,9 +92,12 @@ btnAddProject.addEventListener("click", () => {
 });
 
 btnAddTodoItem.addEventListener("click", () => {
-  let title = prompt("Enter title");
-  let description = prompt("Enter description");
-  let dueDate = prompt("Enter dueDate");
-  let priority = prompt("Enter priority");
-  todoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
+  //   let title = prompt("Enter title");
+  //   let description = prompt("Enter description");
+  //   let dueDate = prompt("Enter dueDate");
+  //   let priority = prompt("Enter priority");
+  //   todoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
+  let _form = DomStuff.createTodoForm();
+  console.log(_form);
+  content.appendChild(_form);
 });

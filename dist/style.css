@@ -38,12 +38,15 @@ footer {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr;
+  position: relative;
 }
 
 .todo-column,
 .project-column {
+  position: relative;
   display: flex;
   flex-direction: column;
+  z-index: 0;
 }
 
 .project-column {
@@ -55,8 +58,17 @@ footer {
 .todo-column {
   padding: 1rem;
   gap: 1rem;
+  background-color: white;
 }
 
 .project-barrier {
   font-size: 2rem;
+}
+
+.overlay {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
