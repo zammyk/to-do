@@ -107,6 +107,7 @@ const Form = (() => {
 
     btnCloseTodoForm.addEventListener("click", () => {
       form.remove();
+      DomStuff.deleteOverlay();
     });
     btnSubmit.addEventListener("click", () => {
       const title = titleInput.value;
@@ -117,6 +118,7 @@ const Form = (() => {
       ).value;
       TodoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
       form.remove();
+      DomStuff.deleteOverlay();
     });
 
     return form;

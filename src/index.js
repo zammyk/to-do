@@ -97,7 +97,7 @@ btnAddTodoItem.addEventListener("click", () => {
   //   let dueDate = prompt("Enter dueDate");
   //   let priority = prompt("Enter priority");
   //   TodoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
-  let _form = DomStuff.createTodoForm();
+  let _form = DomStuff.createTodoForm(content);
   console.log(_form);
   content.appendChild(_form);
 });

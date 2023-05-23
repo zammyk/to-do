@@ -59,7 +59,18 @@ const DomStuff = (() => {
     });
   };
 
-  const createTodoForm = () => {
+  const createOverlay = () => {
+    const overlay = createElement("div", ["overlay"]);
+    return overlay;
+  };
+
+  const deleteOverlay = () => {
+    const overlay = document.querySelector(".overlay");
+    overlay.remove();
+  };
+
+  const createTodoForm = (content) => {
+    content.appendChild(createOverlay());
     return Form.createTodoForm();
   };
 
@@ -72,6 +83,7 @@ const DomStuff = (() => {
     appendChildren,
     createTodoForm,
     createTodoDOM,
+    deleteOverlay,
   };
 })();
 
