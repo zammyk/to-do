@@ -19,7 +19,7 @@ export const TodoApp = (() => {
     let todoItem = new Todo(title, description, dueDate, priority);
     getCurrProject().addTodoItem(todoItem);
     // update curr dom in todo items
-    let todoDom = DomStuff.createElement("div", ["todo-item"], todoItem.title);
+    let todoDom = DomStuff.createTodoDOM(todoItem);
     todoContainer.insertBefore(todoDom, btnAddTodoItem);
   };
   const deleteProject = (projectRemovedId) => {

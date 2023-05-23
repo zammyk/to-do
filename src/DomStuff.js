@@ -48,6 +48,11 @@ const DomStuff = (() => {
     return projectDom;
   };
 
+  const createTodoDOM = (todoItem) => {
+    const todoItemDom = TodoDom.create(todoItem);
+    return todoItemDom;
+  };
+
   const appendChildren = (node, children) => {
     children.forEach((child) => {
       node.appendChild(child);
@@ -66,7 +71,75 @@ const DomStuff = (() => {
     createProjectDOM,
     appendChildren,
     createTodoForm,
+    createTodoDOM,
   };
+})();
+
+const TodoDom = (() => {
+  const create = (todoItem) => {
+    const colorDiv = DomStuff.createElement("div", ["color", "low-priority"]);
+    console.log(todoItem);
+    const checkBox = DomStuff.createElement(
+      "input",
+      [],
+      "",
+      [],
+      "todo-item-" + todoItem.getId
+    );
+    checkBox.type = "checkbox";
+    checkBox.name = "todo-check";
+
+    const titleDiv = DomStuff.createElement(
+      "div",
+      ["title"],
+      todoItem.getTitle
+    );
+
+    const rightDiv = DomStuff.createElement("div", []);
+
+    const btnDetails = DomStuff.createElement(
+      "button",
+      [],
+      "Details",
+      [],
+      "todo-details-" + todoItem.getId
+    );
+
+    const dueDateDiv = DomStuff.createElement(
+      "div",
+      ["due-date"],
+      todoItem.getDueDate
+    );
+
+    const editDiv = DomStuff.createElement(
+      "div",
+      ["edit"],
+      "Edit",
+      [],
+      "todo-edit-" + todoItem.getId
+    );
+
+    const deleteDiv = DomStuff.createElement(
+      "div",
+      ["delete"],
+      "Delete",
+      [],
+      "todo-delete-" + todoItem.getId
+    );
+
+    DomStuff.appendChildren(rightDiv, [
+      btnDetails,
+      dueDateDiv,
+      editDiv,
+      deleteDiv,
+    ]);
+
+    const todoDom = DomStuff.createElement("div", ["todo-item"]);
+    DomStuff.appendChildren(todoDom, [colorDiv, checkBox, titleDiv, rightDiv]);
+
+    return todoDom;
+  };
+  return { create };
 })();
 
 export { DomStuff };

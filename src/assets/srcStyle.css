@@ -8,7 +8,24 @@
 }
 
 .todo-item {
+  display: flex;
+  gap: 1rem;
   background-color: rgb(194, 194, 194);
+}
+
+.todo-item > * {
+  display: flex;
+  gap: 1rem;
+}
+
+.todo-item .color {
+  width: 2%;
+  background-color: red;
+}
+
+.todo-item div:last-child {
+  margin-left: auto;
+  margin-right: 0.5rem;
 }
 
 .todo-form {
