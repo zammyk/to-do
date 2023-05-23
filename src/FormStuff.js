@@ -104,6 +104,11 @@ const Form = (() => {
       btnSubmit,
     ]);
 
+    btnCloseTodoForm.addEventListener("click", () => {
+      form.remove();
+    });
+    // add logic for saving data
+
     return form;
   };
 
