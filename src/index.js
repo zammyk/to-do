@@ -3,7 +3,7 @@ import { Project, isDeletableProject, getProjectFromId } from "./project";
 import { DomStuff } from "./DomStuff";
 import "./assets/srcStyle.css";
 
-const todoApp = (() => {
+export const TodoApp = (() => {
   // project handlers
   let projectIds = [
     Project("Week", false).getId(),
@@ -75,19 +75,19 @@ const btnAddProject = document.getElementById("addProject");
 const btnAddTodoItem = document.getElementById("addTodoItem");
 
 window.onload = () => {
-  todoApp.getAllProjects().forEach((project) => {
-    let projectDom = DomStuff.createProjectDOM(project, todoApp);
+  TodoApp.getAllProjects().forEach((project) => {
+    let projectDom = DomStuff.createProjectDOM(project, TodoApp);
     projectContainer.insertBefore(projectDom, projectContainer.childNodes[0]);
   });
 
-  todoApp.switchCurrProject(2);
+  TodoApp.switchCurrProject(2);
 };
 
 btnAddProject.addEventListener("click", () => {
   let projectTitle = prompt("Enter ProjectTitle");
   let project = Project(projectTitle);
-  todoApp.addProject(project);
-  let projectDom = DomStuff.createProjectDOM(project, todoApp);
+  TodoApp.addProject(project);
+  let projectDom = DomStuff.createProjectDOM(project, TodoApp);
   projectContainer.insertBefore(projectDom, btnAddProject);
 });
 
@@ -96,7 +96,7 @@ btnAddTodoItem.addEventListener("click", () => {
   //   let description = prompt("Enter description");
   //   let dueDate = prompt("Enter dueDate");
   //   let priority = prompt("Enter priority");
-  //   todoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
+  //   TodoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
   let _form = DomStuff.createTodoForm();
   console.log(_form);
   content.appendChild(_form);

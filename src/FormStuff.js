@@ -1,4 +1,5 @@
 import { DomStuff } from "./DomStuff";
+import { TodoApp } from ".";
 
 const Form = (() => {
   const createLabel = (_for, textContent) => {
@@ -107,7 +108,16 @@ const Form = (() => {
     btnCloseTodoForm.addEventListener("click", () => {
       form.remove();
     });
-    // add logic for saving data
+    btnSubmit.addEventListener("click", () => {
+      const title = titleInput.value;
+      const description = descText.value;
+      const dueDate = dueDateInput.value;
+      const priority = document.querySelector(
+        'input[name="todo_priority"]:checked'
+      ).value;
+      TodoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
+      form.remove();
+    });
 
     return form;
   };
