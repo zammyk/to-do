@@ -1,6 +1,7 @@
 import "./assets/srcStyle.css";
 import { Form } from "./FormStuff";
-import { TodoApp } from ".";
+import BinImage from "./assets/bin.png";
+import EditImage from "./assets/edit.png";
 
 const DomStuff = (() => {
   const createElement = (type, classes, text = "", children = [], id = "") => {
@@ -126,27 +127,19 @@ const TodoDom = (() => {
       todoItem.getDueDate
     );
 
-    const editDiv = DomStuff.createElement(
-      "div",
-      ["edit"],
-      "Edit",
-      [],
-      "todo-edit-" + todoItem.getId
-    );
+    const editImage = new Image();
+    editImage.src = BinImage;
+    editImage.alt = "Edit Todo Item";
 
-    const deleteDiv = DomStuff.createElement(
-      "div",
-      ["delete"],
-      "Delete",
-      [],
-      "todo-delete-" + todoItem.getId
-    );
+    const deleteImage = new Image();
+    deleteImage.src = EditImage;
+    deleteImage.alt = "Delete Todo Item";
 
     DomStuff.appendChildren(rightDiv, [
       btnDetails,
       dueDateDiv,
-      editDiv,
-      deleteDiv,
+      editImage,
+      deleteImage,
     ]);
 
     const todoDom = DomStuff.createElement("div", ["todo-item"]);
@@ -159,9 +152,10 @@ const TodoDom = (() => {
       console.log(todoItem.getCompleted);
       if (checkBox.checked) {
         todoDom.classList.add("done");
+        titleDiv.style.textDecoration = "line-through";
       } else {
-        titleDiv.style.textDecoration = "none";
         todoDom.classList.remove("done");
+        titleDiv.style.textDecoration = "none";
       }
       todoItem.toggleStatus();
     });
