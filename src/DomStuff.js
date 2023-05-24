@@ -2,6 +2,7 @@ import "./assets/srcStyle.css";
 import { Form } from "./FormStuff";
 import BinImage from "./assets/bin.png";
 import EditImage from "./assets/edit.png";
+import { TodoApp } from ".";
 
 const DomStuff = (() => {
   const createElement = (type, classes, text = "", children = [], id = "") => {
@@ -148,6 +149,7 @@ const TodoDom = (() => {
       todoDom.classList.add("done");
       checkBox.checked = true;
     }
+
     checkBox.addEventListener("change", () => {
       console.log(todoItem.getCompleted);
       if (checkBox.checked) {
@@ -158,6 +160,11 @@ const TodoDom = (() => {
         titleDiv.style.textDecoration = "none";
       }
       todoItem.toggleStatus();
+    });
+    deleteImage.addEventListener("click", () => {
+      const project = TodoApp.getCurrProject();
+      project.removeTodoItem(todoItem.getId);
+      todoDom.remove();
     });
     DomStuff.appendChildren(todoDom, [colorDiv, checkBox, titleDiv, rightDiv]);
 
