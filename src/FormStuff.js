@@ -93,7 +93,7 @@ const Form = (() => {
     const btnSubmit = DomStuff.createElement(
       "button",
       [],
-      "Add Item",
+      initialContent == null ? "Add Item" : "Edit Item",
       [],
       "btnSubmit"
     );
@@ -136,7 +136,7 @@ const Form = (() => {
     if (initialContent != null) {
       titleInput.value = initialContent.getTitle;
       descText.value = initialContent.getDescription;
-      dueDateDiv.value = initialContent.getDueDate;
+      dueDateInput.value = initialContent.getDueDate;
       if (initialContent.getPriority == "low") priorityLowInput.checked = true;
       else if (initialContent.getPriority == "med")
         priorityMedInput.checked = true;
