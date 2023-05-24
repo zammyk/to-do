@@ -40,7 +40,8 @@
   margin-right: 0.5rem;
 }
 
-.todo-form {
+.todo-form,
+.project-form {
   position: absolute;
   background-color: white;
   top: 50%;
@@ -53,11 +54,16 @@
   padding: 2rem;
 }
 
-.todo-form * {
+.todo-form *,
+.project-form * {
   display: flex;
   align-items: start;
   gap: 0.5rem;
   font-size: 1.5rem;
+}
+
+.project-form div {
+  justify-content: space-between;
 }
 
 #close_todo_form {
