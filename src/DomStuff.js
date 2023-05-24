@@ -1,5 +1,6 @@
 import "./assets/srcStyle.css";
 import { Form } from "./FormStuff";
+import { TodoApp } from ".";
 
 const DomStuff = (() => {
   const createElement = (type, classes, text = "", children = [], id = "") => {
@@ -89,8 +90,10 @@ const DomStuff = (() => {
 
 const TodoDom = (() => {
   const create = (todoItem) => {
-    const colorDiv = DomStuff.createElement("div", ["color", "low-priority"]);
-    console.log(todoItem);
+    const colorDiv = DomStuff.createElement("div", [
+      "color",
+      todoItem.getPriority,
+    ]);
     const checkBox = DomStuff.createElement(
       "input",
       [],

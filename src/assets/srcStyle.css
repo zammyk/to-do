@@ -20,7 +20,16 @@
 
 .todo-item .color {
   width: 2%;
+}
+
+.todo-item .color.high {
   background-color: red;
+}
+.todo-item .color.med {
+  background-color: yellow;
+}
+.todo-item .color.low {
+  background-color: green;
 }
 
 .todo-item div:last-child {
