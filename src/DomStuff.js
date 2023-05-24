@@ -128,11 +128,11 @@ const TodoDom = (() => {
     );
 
     const editImage = new Image();
-    editImage.src = BinImage;
+    editImage.src = EditImage;
     editImage.alt = "Edit Todo Item";
 
     const deleteImage = new Image();
-    deleteImage.src = EditImage;
+    deleteImage.src = BinImage;
     deleteImage.alt = "Delete Todo Item";
 
     DomStuff.appendChildren(rightDiv, [
