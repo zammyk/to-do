@@ -90,7 +90,7 @@ const DomStuff = (() => {
   };
 })();
 
-const TodoDom = (() => {
+export const TodoDom = (() => {
   const create = (todoItem) => {
     const colorDiv = DomStuff.createElement("div", [
       "color",
@@ -172,9 +172,22 @@ const TodoDom = (() => {
     });
     DomStuff.appendChildren(todoDom, [colorDiv, checkBox, titleDiv, rightDiv]);
 
+    todoDom.id = "todo-" + todoItem.id;
     return todoDom;
   };
-  return { create };
+
+  const edit = (todoId, title, description, dueDate, priority) => {
+    let titleDiv = document.querySelector(`#todo-${todoId} .title`);
+    titleDiv.textContent = title;
+    let colorDiv = document.querySelector(`#todo-${todoId} .color`);
+    colorDiv.classList.remove("low", "high", "med");
+    if (priority == "low") colorDiv.classList.add("low");
+    if (priority == "med") colorDiv.classList.add("med");
+    else colorDiv.classList.add("high");
+    let dueDateDiv = document.querySelector(`#todo-${todoId} .due-date`);
+    dueDateDiv.textContent = dueDate;
+  };
+  return { create, edit };
 })();
 
 export { DomStuff };

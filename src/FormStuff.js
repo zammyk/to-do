@@ -1,5 +1,6 @@
 import { DomStuff } from "./DomStuff";
 import { TodoApp } from ".";
+import { TodoDom } from "./DomStuff";
 
 const Form = (() => {
   const createLabel = (_for, textContent) => {
@@ -116,7 +117,18 @@ const Form = (() => {
       const priority = document.querySelector(
         'input[name="todo_priority"]:checked'
       ).value;
-      TodoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
+      if (initialContent == null)
+        TodoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
+      else {
+        TodoDom.edit(
+          initialContent.getId,
+          title,
+          description,
+          dueDate,
+          priority
+        );
+        initialContent.edit(title, description, dueDate, priority);
+      }
       form.remove();
       DomStuff.deleteOverlay();
     });
