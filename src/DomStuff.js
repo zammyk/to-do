@@ -150,6 +150,21 @@ const TodoDom = (() => {
     ]);
 
     const todoDom = DomStuff.createElement("div", ["todo-item"]);
+
+    if (todoItem.getCompleted == 1) {
+      todoDom.classList.add("done");
+      checkBox.checked = true;
+    }
+    checkBox.addEventListener("change", () => {
+      console.log(todoItem.getCompleted);
+      if (checkBox.checked) {
+        todoDom.classList.add("done");
+      } else {
+        titleDiv.style.textDecoration = "none";
+        todoDom.classList.remove("done");
+      }
+      todoItem.toggleStatus();
+    });
     DomStuff.appendChildren(todoDom, [colorDiv, checkBox, titleDiv, rightDiv]);
 
     return todoDom;

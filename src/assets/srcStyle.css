@@ -60,3 +60,7 @@
 #close_todo_form {
   margin-left: auto;
 }
+
+.todo-item.done {
+  opacity: 0.5;
+}

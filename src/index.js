@@ -41,11 +41,7 @@ export const TodoApp = (() => {
     let project = getCurrProject();
     let todoItems = project.getAllTodoItems();
     todoItems.forEach((todoItem) => {
-      let todoDom = DomStuff.createElement(
-        "div",
-        ["todo-item"],
-        todoItem.title
-      );
+      let todoDom = DomStuff.createTodoDOM(todoItem);
       todoContainer.insertBefore(todoDom, btnAddTodoItem);
     });
   };
