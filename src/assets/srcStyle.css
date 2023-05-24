@@ -11,15 +11,18 @@
   display: flex;
   gap: 1rem;
   background-color: rgb(194, 194, 194);
+  align-items: center;
 }
 
 .todo-item > * {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .todo-item .color {
   width: 2%;
+  height: 100%;
 }
 
 .todo-item .color.high {
