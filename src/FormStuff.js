@@ -1,11 +1,12 @@
 import { DomStuff } from "./DomStuff";
 import { TodoApp } from ".";
 import { TodoDom } from "./DomStuff";
+import { Project } from "./project";
 
 const Form = (() => {
   const createLabel = (_for, textContent) => {
     let label = document.createElement("label");
-    label.for = _for;
+    label.htmlFor = _for;
     label.textContent = textContent;
     return label;
   };
@@ -146,10 +147,49 @@ const Form = (() => {
     return form;
   };
 
+  const createProjectForm = () => {
+    const titleDiv = DomStuff.createElement("div", []);
+    const titleLabel = createLabel("project_title_input", "Project Title:");
+    const titleInput = createInput(
+      "text",
+      "project_title_input",
+      "project_title",
+      true
+    );
+    DomStuff.appendChildren(titleDiv, [titleLabel, titleInput]);
+
+    const btnDiv = DomStuff.createElement("div", []);
+    const btnSubmit = DomStuff.createElement("button", [], "Submit");
+    const btnCancel = DomStuff.createElement("button", [], "Cancel");
+    DomStuff.appendChildren(btnDiv, [btnSubmit, btnCancel]);
+
+    btnSubmit.addEventListener("click", () => {
+      const projectTitle = titleInput.value;
+      let project = Project(projectTitle);
+      TodoApp.addProject(project);
+      DomStuff.addProject(document.querySelector(".project-column"), project);
+      form.remove();
+      DomStuff.deleteOverlay();
+    });
+
+    btnCancel.addEventListener("click", () => {
+      form.remove();
+      DomStuff.deleteOverlay();
+    });
+
+    const form = DomStuff.createElement("div", ["project-form"], "", [
+      titleDiv,
+      btnDiv,
+    ]);
+
+    return form;
+  };
+
   return {
     createTodoForm,
     createInput,
     createLabel,
+    createProjectForm,
   };
 })();
 

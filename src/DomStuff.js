@@ -51,6 +51,12 @@ const DomStuff = (() => {
     return projectDom;
   };
 
+  const addProject = (node, project) => {
+    let projectDom = DomStuff.createProjectDOM(project, TodoApp);
+    console.log(node.lastChild);
+    node.insertBefore(projectDom, node.childNodes[node.childNodes.length - 2]);
+  };
+
   const createTodoDOM = (todoItem) => {
     const todoItemDom = TodoDom.create(todoItem);
     return todoItemDom;
@@ -77,16 +83,23 @@ const DomStuff = (() => {
     content.appendChild(Form.createTodoForm(initialContent));
   };
 
+  const createProjectForm = (content) => {
+    content.appendChild(createOverlay());
+    content.appendChild(Form.createProjectForm());
+  };
+
   return {
     createElement,
     createImage,
     deleteAllChildren,
     deleteAllChildrenExceptLast,
     createProjectDOM,
+    addProject,
     appendChildren,
     createTodoForm,
     createTodoDOM,
     deleteOverlay,
+    createProjectForm,
   };
 })();
 

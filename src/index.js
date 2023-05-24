@@ -80,11 +80,12 @@ window.onload = () => {
 };
 
 btnAddProject.addEventListener("click", () => {
-  let projectTitle = prompt("Enter ProjectTitle");
-  let project = Project(projectTitle);
-  TodoApp.addProject(project);
-  let projectDom = DomStuff.createProjectDOM(project, TodoApp);
-  projectContainer.insertBefore(projectDom, btnAddProject);
+  // let projectTitle = prompt("Enter ProjectTitle");
+  // let project = Project(projectTitle);
+  // TodoApp.addProject(project);
+  // let projectDom = DomStuff.createProjectDOM(project, TodoApp);
+  // projectContainer.insertBefore(projectDom, btnAddProject);
+  DomStuff.createProjectForm(content);
 });
 
 btnAddTodoItem.addEventListener("click", () => {
