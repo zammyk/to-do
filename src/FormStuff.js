@@ -19,7 +19,7 @@ const Form = (() => {
     return input;
   };
 
-  const createTodoForm = () => {
+  const createTodoForm = (initialContent = null) => {
     const titleDiv = DomStuff.createElement("div", []);
     const titleLabel = createLabel("todo_title", "Title:");
     const titleInput = createInput("text", "todo_title", "todo_title", true);
@@ -120,6 +120,16 @@ const Form = (() => {
       form.remove();
       DomStuff.deleteOverlay();
     });
+
+    if (initialContent != null) {
+      titleInput.value = initialContent.getTitle;
+      descText.value = initialContent.getDescription;
+      dueDateDiv.value = initialContent.getDueDate;
+      if (initialContent.getPriority == "low") priorityLowInput.checked = true;
+      else if (initialContent.getPriority == "med")
+        priorityMedInput.checked = true;
+      else priorityHighInput.checked = true;
+    }
 
     return form;
   };

@@ -72,9 +72,9 @@ const DomStuff = (() => {
     overlay.remove();
   };
 
-  const createTodoForm = (content) => {
+  const createTodoForm = (content, initialContent = null) => {
     content.appendChild(createOverlay());
-    return Form.createTodoForm();
+    content.appendChild(Form.createTodoForm(initialContent));
   };
 
   return {
@@ -165,6 +165,10 @@ const TodoDom = (() => {
       const project = TodoApp.getCurrProject();
       project.removeTodoItem(todoItem.getId);
       todoDom.remove();
+    });
+    editImage.addEventListener("click", () => {
+      const content = document.getElementById("content");
+      DomStuff.createTodoForm(content, todoItem);
     });
     DomStuff.appendChildren(todoDom, [colorDiv, checkBox, titleDiv, rightDiv]);
 
