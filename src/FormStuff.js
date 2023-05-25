@@ -58,6 +58,8 @@ const Form = (() => {
     DomStuff.appendChildren(dueDateDiv, [dueDateLabel, dueDateInput]);
 
     const priorityDiv = DomStuff.createElement("div", []);
+    const priorityDivText = DomStuff.createElement("div", [], "Priority:");
+    priorityDivText.style.width = "9rem";
     const priorityLowLabel = createLabel("low_priority", "Low");
     const priorityLowInput = createInput(
       "radio",
@@ -83,6 +85,7 @@ const Form = (() => {
       "high"
     );
     DomStuff.appendChildren(priorityDiv, [
+      priorityDivText,
       priorityLowLabel,
       priorityLowInput,
       priorityMedLabel,
@@ -94,7 +97,7 @@ const Form = (() => {
     const btnSubmit = DomStuff.createElement(
       "button",
       [],
-      initialContent == null ? "Add Item" : "Edit Item",
+      initialContent == null ? "+ Add Item" : "Edit Item",
       [],
       "btnSubmit"
     );
