@@ -79,3 +79,15 @@
   width: auto;
   cursor: pointer;
 }
+
+*[class$="form"] {
+  background-color: #404258;
+}
+
+*[class$="form"] button {
+  background-color: #474e68;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
