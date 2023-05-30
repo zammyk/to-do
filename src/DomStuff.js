@@ -98,6 +98,7 @@ const DomStuff = (() => {
     appendChildren,
     createTodoForm,
     createTodoDOM,
+    createOverlay,
     deleteOverlay,
     createProjectForm,
   };
@@ -174,6 +175,14 @@ export const TodoDom = (() => {
       }
       todoItem.toggleStatus();
     });
+
+    btnDetails.addEventListener("click", () => {
+      const content = document.getElementById("content");
+      const detailsDom = DetailsDOM.create(todoItem);
+      content.appendChild(DomStuff.createOverlay());
+      content.appendChild(detailsDom);
+    });
+
     deleteImage.addEventListener("click", () => {
       const project = TodoApp.getCurrProject();
       project.removeTodoItem(todoItem.getId);
@@ -201,6 +210,63 @@ export const TodoDom = (() => {
     dueDateDiv.textContent = dueDate;
   };
   return { create, edit };
+})();
+
+const DetailsDOM = (() => {
+  const create = (todoItem) => {
+    const closeBtn = DomStuff.createElement("button", [], "X");
+
+    const titleHead = DomStuff.createElement("span", [], "Title:");
+    const titleCont = DomStuff.createElement("span", [], todoItem.getTitle);
+    const titleDiv = DomStuff.createElement("div", [], "", [
+      titleHead,
+      titleCont,
+    ]);
+
+    const descHead = DomStuff.createElement("span", [], "Description:");
+    const descCont = DomStuff.createElement(
+      "span",
+      [],
+      todoItem.getDescription
+    );
+    const descDiv = DomStuff.createElement("div", [], "", [descHead, descCont]);
+
+    const dueDateHead = DomStuff.createElement("span", [], "Due Date:");
+    const dueDateCont = DomStuff.createElement("span", [], todoItem.getDueDate);
+    const dueDateDiv = DomStuff.createElement("div", [], "", [
+      dueDateHead,
+      dueDateCont,
+    ]);
+
+    const priorityHead = DomStuff.createElement("span", [], "Priority:");
+    const priorityCont = DomStuff.createElement(
+      "span",
+      [],
+      todoItem.getPriority
+    );
+    const priorityDiv = DomStuff.createElement("div", [], "", [
+      priorityHead,
+      priorityCont,
+    ]);
+
+    let detailsDom = DomStuff.createElement("div", ["details"], "", [
+      closeBtn,
+      titleDiv,
+      descDiv,
+      dueDateDiv,
+      priorityDiv,
+    ]);
+
+    closeBtn.addEventListener("click", () => {
+      detailsDom.remove();
+      DomStuff.deleteOverlay();
+    });
+
+    return detailsDom;
+  };
+  return {
+    create,
+  };
 })();
 
 export { DomStuff };
