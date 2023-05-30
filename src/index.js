@@ -2,6 +2,7 @@ import { Todo } from "./todo_item";
 import { Project, isDeletableProject, getProjectFromId } from "./project";
 import { DomStuff } from "./DomStuff";
 import "./assets/srcStyle.css";
+import { isEqual, endOfDay, endOfWeek } from "date-fns";
 
 export const TodoApp = (() => {
   // project handlers
@@ -31,6 +32,20 @@ export const TodoApp = (() => {
       }
     }
   };
+
+  const todaysItem = (todoItem) => {
+    return isEqual(
+      endOfDay(new Date(todoItem.getDueDate)),
+      endOfDay(new Date())
+    );
+  };
+
+  const weeksItem = (todoItem) => {
+    return isEqual(
+      endOfWeek(new Date(todoItem.getDueDate)),
+      endOfWeek(new Date())
+    );
+  };
   const switchCurrProject = (projectId) => {
     currProjectId = projectId;
     DomStuff.deleteAllChildrenExceptLast(todoContainer);
@@ -40,6 +55,22 @@ export const TodoApp = (() => {
     // changed the dom of todoItems
     let project = getCurrProject();
     let todoItems = project.getAllTodoItems();
+    if (projectId < 2) {
+      // Todays
+      todoItems = [];
+      projectIds.forEach((pId) => {
+        if (pId >= 2) {
+          let project = getProjectFromId(pId);
+          project.getAllTodoItems().forEach((todoItem) => {
+            if (
+              (todaysItem(todoItem) && projectId == 1) ||
+              (weeksItem(todoItem) && projectId == 0)
+            )
+              todoItems.push(todoItem);
+          });
+        }
+      });
+    }
     todoItems.forEach((todoItem) => {
       let todoDom = DomStuff.createTodoDOM(todoItem);
       todoContainer.insertBefore(todoDom, btnAddTodoItem);
