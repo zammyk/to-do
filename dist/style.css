@@ -105,6 +105,16 @@ footer {
   gap: 1rem;
 }
 
+.details button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  color: #404258;
+}
+
 .details div span:first-child {
   width: 5rem;
 }
