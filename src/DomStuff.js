@@ -53,7 +53,6 @@ const DomStuff = (() => {
 
   const addProject = (node, project) => {
     let projectDom = DomStuff.createProjectDOM(project, TodoApp);
-    console.log(node.lastChild);
     node.insertBefore(projectDom, node.childNodes[node.childNodes.length - 2]);
   };
 
@@ -165,7 +164,6 @@ export const TodoDom = (() => {
     }
 
     checkBox.addEventListener("change", () => {
-      console.log(todoItem.getCompleted);
       if (checkBox.checked) {
         todoDom.classList.add("done");
         titleDiv.style.textDecoration = "line-through";

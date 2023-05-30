@@ -169,8 +169,8 @@ const Form = (() => {
     btnSubmit.addEventListener("click", () => {
       const projectTitle = titleInput.value;
       let project = Project(projectTitle);
-      TodoApp.addProject(project);
       DomStuff.addProject(document.querySelector(".project-column"), project);
+      TodoApp.addProject(project);
       form.remove();
       DomStuff.deleteOverlay();
     });

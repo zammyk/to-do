@@ -47,10 +47,6 @@ export const TodoApp = (() => {
     );
   };
   const switchCurrProject = (projectId) => {
-    document
-      .querySelectorAll(".project")
-      .forEach((projectDom) => projectDom.classList.remove("selected"));
-    document.getElementById("project-" + projectId).classList.add("selected");
     currProjectId = projectId;
     DomStuff.deleteAllChildrenExceptLast(todoContainer);
     if (projectId < 2) btnAddTodoItem.style.display = "none";
@@ -79,6 +75,10 @@ export const TodoApp = (() => {
       let todoDom = DomStuff.createTodoDOM(todoItem);
       todoContainer.insertBefore(todoDom, btnAddTodoItem);
     });
+    document
+      .querySelectorAll(".project")
+      .forEach((projectDom) => projectDom.classList.remove("selected"));
+    document.getElementById("project-" + projectId).classList.add("selected");
   };
   const getCurrProject = () => {
     return getProjectFromId(currProjectId);
