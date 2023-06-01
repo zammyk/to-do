@@ -3,6 +3,7 @@ import { Form } from "./FormStuff";
 import BinImage from "./assets/bin.png";
 import EditImage from "./assets/edit.png";
 import { TodoApp } from ".";
+import { getProjectFromId } from "./project";
 
 const DomStuff = (() => {
   const createElement = (type, classes, text = "", children = [], id = "") => {
@@ -182,7 +183,7 @@ export const TodoDom = (() => {
     });
 
     deleteImage.addEventListener("click", () => {
-      const project = TodoApp.getCurrProject();
+      const project = getProjectFromId(todoItem.getProjectId);
       project.removeTodoItem(todoItem.getId);
       todoDom.remove();
     });

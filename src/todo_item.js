@@ -1,3 +1,5 @@
+import { TodoApp } from ".";
+
 let nextId = 0;
 let todoDirectory = [];
 
@@ -9,6 +11,7 @@ class Todo {
     this.priority = priority;
     this.completed = false;
     this.id = nextId++;
+    this.projectId = TodoApp.getCurrProject().getId();
     todoDirectory.push(this);
   }
 
@@ -21,6 +24,9 @@ class Todo {
 
   get getTitle() {
     return this.title;
+  }
+  get getProjectId() {
+    return this.projectId;
   }
   get getDescription() {
     return this.description;
