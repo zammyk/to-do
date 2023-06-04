@@ -80,25 +80,17 @@
   align-items: center;
 }
 
-#close_todo_form {
-  height: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .todo-form #btnSubmit {
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.todo-form div:last-child {
+  display: flex;
+  justify-content: space-between;
 }
 
 .project-form div {
   justify-content: space-between;
-}
-
-#close_todo_form {
-  margin-left: auto;
 }
 
 .todo-item {
@@ -162,4 +154,15 @@
 
 .details div span:first-child {
   width: 5rem;
+}
+
+input:invalid,
+textarea:invalid {
+  border-color: #900;
+  background-color: #fdd;
+}
+
+input:focus:invalid,
+textarea:focus:invalid {
+  outline: none;
 }

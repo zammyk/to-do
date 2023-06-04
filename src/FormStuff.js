@@ -25,6 +25,7 @@ const Form = (() => {
     const titleDiv = DomStuff.createElement("div", []);
     const titleLabel = createLabel("todo_title", "Title:");
     const titleInput = createInput("text", "todo_title", "todo_title", true);
+    titleInput.required = true;
     const btnCloseTodoForm = DomStuff.createElement(
       "button",
       [],
@@ -32,11 +33,7 @@ const Form = (() => {
       [],
       "close_todo_form"
     );
-    DomStuff.appendChildren(titleDiv, [
-      titleLabel,
-      titleInput,
-      btnCloseTodoForm,
-    ]);
+    DomStuff.appendChildren(titleDiv, [titleLabel, titleInput]);
 
     const descDiv = DomStuff.createElement("div", []);
     const descLabel = createLabel("todo_description", "Description:");
@@ -45,6 +42,7 @@ const Form = (() => {
     descText.name = "todo_description";
     descText.rows = "5";
     descText.cols = "20";
+    descText.required = true;
     DomStuff.appendChildren(descDiv, [descLabel, descText]);
 
     const dueDateDiv = DomStuff.createElement("div", []);
@@ -55,6 +53,7 @@ const Form = (() => {
       "todo_due_date",
       true
     );
+    dueDateInput.required = true;
     DomStuff.appendChildren(dueDateDiv, [dueDateLabel, dueDateInput]);
 
     const priorityDiv = DomStuff.createElement("div", []);
@@ -68,6 +67,7 @@ const Form = (() => {
       false,
       "low"
     );
+    priorityLowInput.checked = true;
     const priorityMedLabel = createLabel("med_priority", "Med");
     const priorityMedInput = createInput(
       "radio",
@@ -101,26 +101,46 @@ const Form = (() => {
       [],
       "btnSubmit"
     );
+    btnSubmit.type = "submit";
+    const btnDiv = DomStuff.createElement("div", ["btnDiv"], "", [
+      btnSubmit,
+      btnCloseTodoForm,
+    ]);
 
-    const form = DomStuff.createElement("div", ["todo-form"], "", [
+    const form = DomStuff.createElement("form", ["todo-form"], "", [
       titleDiv,
       descDiv,
       dueDateDiv,
       priorityDiv,
-      btnSubmit,
+      btnDiv,
     ]);
+
+    const inputs = [titleInput, descText, dueDateInput];
 
     btnCloseTodoForm.addEventListener("click", () => {
       form.remove();
       DomStuff.deleteOverlay();
     });
-    btnSubmit.addEventListener("click", () => {
+    btnSubmit.addEventListener("click", (event) => {
+      event.preventDefault();
       const title = titleInput.value;
       const description = descText.value;
       const dueDate = dueDateInput.value;
       const priority = document.querySelector(
         'input[name="todo_priority"]:checked'
       ).value;
+      let isInvalid = false;
+      inputs
+        .slice()
+        .reverse()
+        .forEach((inp) => {
+          if (!inp.validity.valid) {
+            inp.setCustomValidity("This section is required!");
+            inp.reportValidity();
+            isInvalid = true;
+          }
+        });
+      if (isInvalid) return;
       if (initialContent == null)
         TodoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
       else {
