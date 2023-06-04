@@ -179,6 +179,7 @@ const Form = (() => {
       "project_title",
       true
     );
+    titleInput.required = true;
     DomStuff.appendChildren(titleDiv, [titleLabel, titleInput]);
 
     const btnDiv = DomStuff.createElement("div", []);
@@ -188,6 +189,11 @@ const Form = (() => {
 
     btnSubmit.addEventListener("click", () => {
       const projectTitle = titleInput.value;
+      if (!titleInput.validity.valid) {
+        titleInput.setCustomValidity("Project Title is required!");
+        titleInput.reportValidity();
+        return;
+      }
       let project = Project(projectTitle);
       DomStuff.addProject(document.querySelector(".project-column"), project);
       TodoApp.addProject(project);
