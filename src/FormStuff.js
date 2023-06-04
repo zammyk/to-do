@@ -134,13 +134,17 @@ const Form = (() => {
         .slice()
         .reverse()
         .forEach((inp) => {
-          if (!inp.validity.valid) {
+          if (!inp.checkValidity()) {
+            console.log(inp);
             inp.setCustomValidity("This section is required!");
             inp.reportValidity();
             isInvalid = true;
           }
         });
-      if (isInvalid) return;
+      if (isInvalid) {
+        inputs.forEach((inp) => inp.setCustomValidity(""));
+        return;
+      }
       if (initialContent == null)
         TodoApp.addTodoItemToCurrProject(title, description, dueDate, priority);
       else {
